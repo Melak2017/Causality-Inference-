@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-class CleanStoreDf:
+class CleanDf:
     def __init__(self, df: pd.DataFrame, deep=False) -> None:
         """
         ------
