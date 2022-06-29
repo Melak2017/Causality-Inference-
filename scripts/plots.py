@@ -50,7 +50,7 @@ def swarmplot(x, y, start: int = 0, num_features: int = 10):
     plt.figure(figsize=(20, 12))
     sns.swarmplot(x="features", y="value", hue="diagnosis", data=data)
     plt.xticks(rotation=90)
-    plt.show()
+    C
 
 
 def plot_correlation(x):
@@ -95,3 +95,14 @@ def vis_sm(sm):
       all_node_attributes=NODE_STYLE.WEAK,
       all_edge_attributes=EDGE_STYLE.WEAK)
   return Image(viz.draw(format='png'))
+
+
+def hist_plot(df: pd.DataFrame,features: str, field:str):
+    fig, axs = plt.subplots(10,3, figsize=(20,45))
+    for col in range(len(features)):  
+        for f in range(len(fields)):  
+            sns.histplot(df, x=features[col]+"_"+fields[f], hue="diagnosis", element="bars", stat="count", palette=["gold", "purple"],ax=axs[col][f])
+    fig.show()
+    plt.show()
+                
+
