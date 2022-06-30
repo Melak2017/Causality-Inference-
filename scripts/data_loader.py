@@ -13,7 +13,7 @@ def load_df_from_csv(filename: str, na_values: list = []) -> pd.DataFrame:
         na_values.extend(missing_values)
         df = pd.read_csv(filename, na_values=na_values)
         df = optimize_df(df)
-
+        print("Succesfull!:\n\t Succesfully read .csv file")
         return df
     except:
         print("Error Occured:\n\tCould not find specified .csv file")
