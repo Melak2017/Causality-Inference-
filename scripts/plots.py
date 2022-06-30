@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-#from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
+from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
 from IPython.display import Markdown, display, Image, display_html
 
 
@@ -21,14 +21,15 @@ def violinplot(x, y, start: int = 0, num_features: int = 10):
 
 def plot_count(df: pd.DataFrame, column: str, xcolumn: str = None, ycolumn: str = None) -> None:
     plt.figure(figsize=(11, 6))
-    sns.countplot(data=df, x=column )
+    sns.countplot(data=df, x=column)
     plt.title(f'Plot count of {column}', size=18, fontweight='bold')
     if xcolumn:
-        plt.xlabel(xcolumn,fontsize=17)
+        plt.xlabel(xcolumn, fontsize=17)
     if xcolumn:
-        plt.ylabel(ycolumn,fontsize=17)
+        plt.ylabel(ycolumn, fontsize=17)
     plt.show()
-    
+
+
 def boxplot(x, y, start: int = 0, num_features: int = 10):
     data = pd.concat([y, x.iloc[:, start:num_features]], axis=1)
     data = pd.melt(data,
@@ -50,7 +51,7 @@ def swarmplot(x, y, start: int = 0, num_features: int = 10):
     plt.figure(figsize=(20, 12))
     sns.swarmplot(x="features", y="value", hue="diagnosis", data=data)
     plt.xticks(rotation=90)
-    C
+    
 
 
 def plot_correlation(x):
@@ -89,20 +90,19 @@ def view_df(df, subset=[], color='#66F582'):
 
 
 def vis_sm(sm):
-  viz = plot_structure(
-      sm,
-      graph_attributes={"scale": "2.0", 'size': 2.5},
-      all_node_attributes=NODE_STYLE.WEAK,
-      all_edge_attributes=EDGE_STYLE.WEAK)
-  return Image(viz.draw(format='png'))
+    viz = plot_structure(
+        sm,
+        graph_attributes={"scale": "2.0", 'size': 2.5},
+        all_node_attributes=NODE_STYLE.WEAK,
+        all_edge_attributes=EDGE_STYLE.WEAK)
+    return Image(viz.draw(format='png'))
 
 
-def hist_plot(df: pd.DataFrame,features: str, field:str):
-    fig, axs = plt.subplots(10,3, figsize=(20,45))
-    for col in range(len(features)):  
-        for f in range(len(fields)):  
-            sns.histplot(df, x=features[col]+"_"+fields[f], hue="diagnosis", element="bars", stat="count", palette=["gold", "purple"],ax=axs[col][f])
+def hist_plot(df: pd.DataFrame, features: str, field: str):
+    fig, axs = plt.subplots(10, 3, figsize=(20, 45))
+    for col in range(len(features)):
+        for f in range(len(field)):
+            sns.histplot(df, x=features[col]+"_"+field[f], hue="diagnosis",
+                         element="bars", stat="count", palette=["gold", "purple"], ax=axs[col][f])
     fig.show()
     plt.show()
-                
-
