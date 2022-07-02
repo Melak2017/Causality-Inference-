@@ -4,6 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from causalnex.plots import plot_structure, NODE_STYLE, EDGE_STYLE
 from IPython.display import Markdown, display, Image, display_html
+from causalnex.structure.notears import from_pandas
+from causalnex.structure import StructureModel
 
 
 def violinplot(x, y, start: int = 0, num_features: int = 10):
@@ -92,11 +94,10 @@ def view_df(df, subset=[], color='#66F582'):
 def vis_sm(sm):
     viz = plot_structure(
         sm,
-        graph_attributes={"scale": "2.0", 'size': 2.5},
+        graph_attributes={"scale": "0.5"},
         all_node_attributes=NODE_STYLE.WEAK,
         all_edge_attributes=EDGE_STYLE.WEAK)
     return Image(viz.draw(format='png'))
-
 
 def hist_plot(df: pd.DataFrame, features: str, field: str):
     fig, axs = plt.subplots(10, 3, figsize=(20, 45))
